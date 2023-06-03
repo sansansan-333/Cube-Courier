@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39ce137d37be741b2a34a992a36a330a, type: 3}
+  m_Name: level 1
+  m_EditorClassIdentifier: 
+  colorCubes:
+  - position: {x: 2, y: 1, z: -2}
+    movable: 1
+    color: 0
+  - position: {x: 0, y: 1, z: 0}
+    movable: 1
+    color: 0
+  staticCubes:
+  - position: {x: 0, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -2}
+    materialName: cube_default
