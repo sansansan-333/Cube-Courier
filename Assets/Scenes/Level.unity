@@ -2181,6 +2181,7 @@ MonoBehaviour:
   _cubeDefaultMaterial: {fileID: 2100000, guid: 98ce016bb246547c99297816e042dca3, type: 2}
   _levels:
   - {fileID: 11400000, guid: f5ebb0467fe4048b2b39671a5cceedf2, type: 2}
+  - {fileID: 11400000, guid: ab190051f3ba64c64857abdf219d9089, type: 2}
 --- !u!1 &883926858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3785,7 +3786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2032609133
 RectTransform:
   m_ObjectHideFlags: 0

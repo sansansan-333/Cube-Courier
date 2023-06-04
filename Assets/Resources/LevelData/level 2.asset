@@ -12,5 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ce137d37be741b2a34a992a36a330a, type: 3}
   m_Name: level 2
   m_EditorClassIdentifier: 
-  colorCubes: []
-  staticCubes: []
+  colorCubes:
+  - position: {x: -1, y: 1, z: -1}
+    movable: 1
+    color: 0
+  - position: {x: 1, y: 1, z: 0}
+    movable: 1
+    color: 1
+  - position: {x: 1, y: 1, z: -3}
+    movable: 1
+    color: 1
+  - position: {x: -1, y: 1, z: -3}
+    movable: 1
+    color: 0
+  staticCubes:
+  - position: {x: 0, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: -1, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: -1, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: -1, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -3}
+    materialName: cube_default
