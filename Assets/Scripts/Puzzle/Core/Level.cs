@@ -94,7 +94,7 @@ public class Level : MonoBehaviour
     }
 
     /// <summary>
-    /// Start to move a cube to the direction if possible.
+    /// Start to move a cube to the direction if possible. Cube will fall if it can.
     /// </summary>
     /// <returns>True if the cube can move in the direction. False otherwise.</returns>
     public bool TryToStartMovingCube(Cube cube, MoveDirection direction)
@@ -103,26 +103,49 @@ public class Level : MonoBehaviour
 
         if(CanGoTo(cube, direction))
         {
-            var destination = cube.position + direction;
+            var originalPosition = cube.position;
+            var positionAfterHorizontalMove = cube.position + direction;
+            var finalPosition = positionAfterHorizontalMove;
 
-            // start to move a cube
+            // move horizontally
+            var motionQueue = new MotionSystem.MotionQueue();
+            motionQueue.PushMotion(new MotionInfo(
+                cube.transform,
+                cube.position,
+                positionAfterHorizontalMove,
+                ResourceSystem.Instance.PuzzleSettings.cubeMovingSpeedCurve,
+                cubeMovingSpeed
+            ));
+
+            // fall 
+            var floorCube = GetCubeBelow(positionAfterHorizontalMove + Vector3Int.down);
+            if(floorCube != null)
+            {
+                Debug.Log("fall");
+                finalPosition = floorCube.position + Vector3Int.up;
+
+                motionQueue.PushMotion(new MotionInfo(
+                    cube.transform,
+                    positionAfterHorizontalMove,
+                    finalPosition,
+                    ResourceSystem.Instance.PuzzleSettings.cubeFallingSpeedCurve,
+                    cubeMovingSpeed
+                ));
+            }
+
+            // invoke move
             state = PuzzleState.CubeMoving;
-            MotionSystem.Instance.StartMoving(
-                cube.transform, 
-                destination,
-                cubeMovingSpeed,
-                () => { 
-                    FinalizeCubeMove(cube, Vector3Int.FloorToInt(cube.position + direction));
+            motionQueue.Run(onEnd: () => {
+                FinalizeCubeMove(cube, finalPosition);
 
-                    // record move 
-                    moves.Push(new Move(
-                        cube,
-                        cube.position,
-                        direction,
-                        destination
-                    ));
-                }
-            );
+                // record move 
+                moves.Push(new Move(
+                    cube,
+                    originalPosition,
+                    direction,
+                    finalPosition
+                ));
+            });
             return true;
         }
         else
@@ -158,15 +181,15 @@ public class Level : MonoBehaviour
         return true;
     }
 
-    private void FinalizeCubeMove(Cube cube, Vector3Int nextPosition)
+    private void FinalizeCubeMove(Cube cube, Vector3Int finalPosition)
     {
         // change state
         state = PuzzleState.Default;
 
         // change cube position
         cubeDict[cube.position] = null;
-        cube.position = nextPosition;
-        cubeDict[nextPosition] = cube;
+        cube.position = finalPosition;
+        cubeDict[finalPosition] = cube;
 
         // lock adjacent cube if it has the same color
         if(cube is ColorCube colorCube)
@@ -225,6 +248,27 @@ public class Level : MonoBehaviour
         return adjCubes;
     }
 
+    private Cube GetCubeBelow(Vector3 position)
+    {
+        Cube underCube = null;
+
+        // find upmost cube under the cube
+        foreach (var pos in cubeDict.Keys)
+        {
+            if (cubeDict[pos] != null &&
+                position.x == pos.x && position.z == pos.z && 
+                position.y > pos.y)
+            {
+                if(underCube == null || underCube.position.y < cubeDict[pos].position.y)
+                {
+                    underCube = cubeDict[pos];
+                }
+            }
+        }
+
+        return underCube;
+    }
+
     private void LockCube(ColorCube colorCube)
     {
         colorCube.movable = false;
@@ -232,7 +276,7 @@ public class Level : MonoBehaviour
 
     private void DoInverseMoveOf(Move move)
     {
-
+        
     }
 }
 

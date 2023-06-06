@@ -6,6 +6,7 @@ public class Player
 {
     private Level level;
     private Cube dragStartCube;
+    private ColorCube selectedCube;
 
     public Player(){}
 
@@ -16,34 +17,70 @@ public class Player
 
         if(level.state == PuzzleState.Default)
         {
-            // start of drag
-            if (Input.GetMouseButtonDown(0))
+            // MoveCubeWithDrag();
+            MoveCubeWithClick();
+        }
+    }
+
+    private void MoveCubeWithDrag()
+    {
+        // start of drag
+        if (Input.GetMouseButtonDown(0))
+        {
+            var cube = GetCubeAtMousePosition();
+            if (cube != null && cube is ColorCube colorCube && colorCube.movable)
             {
-                Debug.Log("drag start");
+                RegisterDragStart(cube);
+            }
+        }
+
+        // end of drag
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (IsDragRegistered())
+            {
                 var cube = GetCubeAtMousePosition();
-                if(cube != null && cube is ColorCube colorCube && colorCube.movable)
+                if (cube != null)
                 {
-                    RegisterDragStart(cube);
+                    var direction = CalcuDirection(dragStartCube, cube);
+                    Debug.Log(direction);
+                    level.TryToStartMovingCube(dragStartCube, direction);
                 }
-            }
 
-            // end of drag
-            if(Input.GetMouseButtonUp(0))
+                dragStartCube = null;
+            }
+        }
+    }
+
+    private void MoveCubeWithClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(IsCubeSelected())
             {
-                if(IsDragRegistered())
+                var cube = GetCubeAtMousePosition();
+                if (cube != null)
                 {
-                    var cube = GetCubeAtMousePosition();
-                    Debug.Log($"mouse up on {cube}");
-                    if(cube != null)
+                    if(cube == selectedCube)
                     {
-                        var direction = CalcuDirection(dragStartCube, cube);
-                        Debug.Log(direction);
-                        level.TryToStartMovingCube(dragStartCube, direction);
+                        DeselectCube(selectedCube);
                     }
-
-                    dragStartCube = null;
+                    else if(selectedCube.movable)
+                    {
+                        var direction = CalcuDirection(selectedCube, cube);
+                        level.TryToStartMovingCube(selectedCube, direction);
+                    }
                 }
             }
+            else
+            {
+                var cube = GetCubeAtMousePosition();
+                if (cube != null && cube is ColorCube colorCube && colorCube.movable)
+                {
+                    SelectCube(colorCube);
+                }
+            }
+            
         }
     }
 
@@ -61,12 +98,28 @@ public class Player
     private void RegisterDragStart(Cube cube)
     {
         dragStartCube = cube;
-        Debug.Log($"drag start: {cube}");
+    }
+
+    private void SelectCube(ColorCube colorCube)
+    {
+        colorCube.OnSelected();
+        selectedCube = colorCube;
+    }
+
+    private void DeselectCube(ColorCube colorCube)
+    {
+        colorCube.OnDeselected();
+        selectedCube = null;
     }
 
     private bool IsDragRegistered()
     {
         return dragStartCube != null;
+    }
+
+    private bool IsCubeSelected()
+    {
+        return selectedCube != null;
     }
 
     private MoveDirection CalcuDirection(Cube start, Cube end)

@@ -74,7 +74,7 @@ public class LevelEditorWindow : EditorWindow
 
     private void OnDestroy() 
     {
-        if (!IsCurrentSceneValid()) return;
+        if (!IsCurrentSceneValid() || EditorApplication.isPlaying) return;
 
         SceneView.duringSceneGui -= HandleMouseEvents;
         SceneView.duringSceneGui -= DrawActivateTool;

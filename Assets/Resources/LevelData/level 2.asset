@@ -32,10 +32,6 @@ MonoBehaviour:
     materialName: cube_default
   - position: {x: 1, y: 0, z: 0}
     materialName: cube_default
-  - position: {x: 1, y: 0, z: -1}
-    materialName: cube_default
-  - position: {x: -1, y: 0, z: 0}
-    materialName: cube_default
   - position: {x: -1, y: 0, z: -1}
     materialName: cube_default
   - position: {x: 0, y: 0, z: -2}
@@ -45,4 +41,8 @@ MonoBehaviour:
   - position: {x: -1, y: 0, z: -3}
     materialName: cube_default
   - position: {x: 1, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: -1, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -1}
     materialName: cube_default

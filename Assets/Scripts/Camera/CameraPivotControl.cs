@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class CameraPivotControl : MonoBehaviour
 {
-    private readonly float rotateSensitivity = 3;
-    private readonly float deceleration = 1000;
-    private float acceleration;
+    private readonly float rotateMouseSensitivity = 3;
+    private readonly float mouseDeceleration = 1000;
+    private float mouseAcceleration;
     private readonly int accTimeFrame = 15;
     private ObjectBuffer<float> velocityBuffer;
     private ObjectBuffer<float> deltatimeBuffer;
+    private readonly float rotateKeySensitivity = 0.04f;
+    private readonly float keyDeceleration = 1000;
+    private readonly float keyMaxAcceleration = 50000;
+    private float keyAcceleration;
     private bool rotateAreaClicked;
 
     void Start()
@@ -22,7 +26,7 @@ public class CameraPivotControl : MonoBehaviour
 
     void Update()
     {
-        RotateCamera();
+        RotateCameraByArrows();
     }
 
     public void CenterCamera()
@@ -41,11 +45,11 @@ public class CameraPivotControl : MonoBehaviour
         }
     }
 
-    private void RotateCamera()
+    private void RotateCameraByMouse()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            acceleration = 0;
+            mouseAcceleration = 0;
             velocityBuffer.Clear();
             deltatimeBuffer.Clear();
         }
@@ -54,7 +58,7 @@ public class CameraPivotControl : MonoBehaviour
         {
             // take the average velocity over the last [accTimeFrame] frames 
             // and calculate the current acceleration using it
-            float distance = Input.GetAxis("Mouse X") * rotateSensitivity;
+            float distance = Input.GetAxis("Mouse X") * rotateMouseSensitivity;
             velocityBuffer.Add(distance / Time.deltaTime);
             deltatimeBuffer.Add(Time.deltaTime);
             float velocitySum = 0, timeSum = 0;
@@ -63,26 +67,65 @@ public class CameraPivotControl : MonoBehaviour
                 velocitySum += velocityBuffer[i];
                 timeSum += deltatimeBuffer[i];
             }
-            acceleration = velocitySum / timeSum;
+            mouseAcceleration = velocitySum / timeSum;
         }
         else
         {
-            if(acceleration > 0)
+            // decelerate
+            if(mouseAcceleration > 0)
             {
-                acceleration -= deceleration;
-                acceleration = Mathf.Max(0, acceleration);
+                mouseAcceleration -= mouseDeceleration;
+                mouseAcceleration = Mathf.Max(0, mouseAcceleration);
             }
-            else if(acceleration < 0)
+            else if(mouseAcceleration < 0)
             {
-                acceleration += deceleration;
-                acceleration = Mathf.Min(0, acceleration);
+                mouseAcceleration += mouseDeceleration;
+                mouseAcceleration = Mathf.Min(0, mouseAcceleration);
             }
 
             rotateAreaClicked = false;
         }
 
         var angles = transform.eulerAngles;
-        angles.y += acceleration * Time.deltaTime * Time.deltaTime;
+        angles.y += mouseAcceleration * Time.deltaTime * Time.deltaTime;
+        transform.eulerAngles = angles;
+    }
+
+    private void RotateCameraByArrows()
+    {
+        bool arrowKeyPressed = false;
+
+        if(Input.GetKey("left"))
+        {
+            keyAcceleration -= rotateKeySensitivity / (Time.deltaTime * Time.deltaTime);
+            arrowKeyPressed = true;
+        }
+        if(Input.GetKey("right"))
+        {
+            keyAcceleration += rotateKeySensitivity / (Time.deltaTime * Time.deltaTime);
+            arrowKeyPressed = true;
+        }
+
+        if(!arrowKeyPressed)
+        {
+            // decelerate
+            if (keyAcceleration > 0)
+            {
+                keyAcceleration -= keyDeceleration;
+                keyAcceleration = Mathf.Max(0, keyAcceleration);
+            }
+            else if (keyAcceleration < 0)
+            {
+                keyAcceleration += keyDeceleration;
+                keyAcceleration = Mathf.Min(0, keyAcceleration);
+            }
+        }
+
+        // limit speed
+        keyAcceleration = Mathf.Sign(keyAcceleration) * Mathf.Min(Mathf.Abs(keyAcceleration), keyMaxAcceleration);
+
+        var angles = transform.eulerAngles;
+        angles.y += keyAcceleration * Time.deltaTime * Time.deltaTime;
         transform.eulerAngles = angles;
     }
 

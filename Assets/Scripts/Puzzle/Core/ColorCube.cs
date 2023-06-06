@@ -25,4 +25,22 @@ public class ColorCube : Cube
         color = data.color;
         GetComponent<MeshRenderer>().material = ResourceSystem.Instance.PuzzleSettings.GetCubeMaterial(data.color);
     }
+
+    public void OnSelected()
+    {
+        Debug.Log("on selected");
+        var material = GetComponent<MeshRenderer>().material;
+        var color = material.color;
+        color.a = 0.7f;
+        material.color = color;
+    }
+
+    public void OnDeselected()
+    {
+        Debug.Log("on deselected");
+        var material = GetComponent<MeshRenderer>().material;
+        var color = material.color;
+        color.a = 1;
+        material.color = color;   
+    }
 }

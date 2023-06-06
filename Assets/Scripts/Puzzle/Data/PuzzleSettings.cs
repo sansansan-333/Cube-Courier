@@ -7,6 +7,8 @@ using System;
 public class PuzzleSettings : ScriptableObject
 {
     public List<Material> colorCubeMaterials;
+    public AnimationCurve cubeMovingSpeedCurve;
+    public AnimationCurve cubeFallingSpeedCurve;
 
     public void Awake()
     {
