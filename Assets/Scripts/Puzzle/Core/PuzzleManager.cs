@@ -61,7 +61,7 @@ public class PuzzleManager : Singleton<PuzzleManager>
 #if UNITY_EDITOR
             DestroyImmediate(cube.gameObject);
 #else 
-            Destroy(cube.gameObject)
+            Destroy(cube.gameObject);
 #endif
             return null;
         }
