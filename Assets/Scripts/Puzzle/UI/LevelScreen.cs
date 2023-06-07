@@ -40,4 +40,12 @@ public class LevelScreen : MonoBehaviour
         CloseCompletedPopup();
         GameManager.Instance.GoToNextLevel();
     }
+
+    public void DeselectCube()
+    {
+        if (PuzzleManager.Instance.CurrentLevel != null)
+        {
+            PuzzleManager.Instance.CurrentLevel.DeselectCube();
+        }
+    }
 }

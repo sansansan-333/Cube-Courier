@@ -28,19 +28,36 @@ public class ColorCube : Cube
 
     public void OnSelected()
     {
-        Debug.Log("on selected");
         var material = GetComponent<MeshRenderer>().material;
         var color = material.color;
         color.a = 0.7f;
         material.color = color;
+
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     public void OnDeselected()
     {
-        Debug.Log("on deselected");
         var material = GetComponent<MeshRenderer>().material;
         var color = material.color;
         color.a = 1;
-        material.color = color;   
+        material.color = color;
+
+        GetComponent<BoxCollider>().enabled = true;
+    }
+
+    public void OnLocked()
+    {
+        var lockedTexture = ResourceSystem.Instance.PuzzleSettings.lockedCubeTexture;
+        var tempMaterial = new Material(GetComponent<MeshRenderer>().sharedMaterial);
+        tempMaterial.mainTexture = lockedTexture;
+        GetComponent<MeshRenderer>().material = tempMaterial;
+    }
+
+    public void OnUnlocked()
+    {
+        var tempMaterial = new Material(GetComponent<MeshRenderer>().sharedMaterial);
+        tempMaterial.mainTexture = null;
+        GetComponent<MeshRenderer>().material = tempMaterial;
     }
 }

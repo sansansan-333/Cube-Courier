@@ -15,7 +15,8 @@ MonoBehaviour:
   colorCubeMaterials:
   - {fileID: 2100000, guid: 9ae552bd2c4d3426b9cd747fa53d874a, type: 2}
   - {fileID: 2100000, guid: b1663d51e6898495b840321bc78c7242, type: 2}
-  - {fileID: 2100000, guid: b1663d51e6898495b840321bc78c7242, type: 2}
+  - {fileID: 2100000, guid: 54e418dd024cd4172ba7300d3cd048ef, type: 2}
+  - {fileID: 2100000, guid: 2447b192c51ae41ce988647741ecd866, type: 2}
   cubeMovingSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -73,3 +74,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  lockedCubeTexture: {fileID: 2800000, guid: 1c2d91f9beea64afda691229d2f2e76a, type: 3}

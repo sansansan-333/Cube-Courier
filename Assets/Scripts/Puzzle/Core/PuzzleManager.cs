@@ -9,6 +9,8 @@ public class PuzzleManager : Singleton<PuzzleManager>
 
     public Level SpawnLevel(LevelData levelData)
     {
+        if(levelData == null) return null;
+    
         DespawnCurrentLevel();
 
         var prefabSystem = PrefabSystem.Instance;
@@ -39,7 +41,9 @@ public class PuzzleManager : Singleton<PuzzleManager>
         if(data is ColorCubeData colorCubeData)
         {
             cube = Instantiate(prefabSystem.ColorCube);
-            (cube as ColorCube).SetData(colorCubeData);
+            var colorCube = cube as ColorCube;
+            colorCube.SetData(colorCubeData);
+            if(!colorCube.movable) colorCube.OnLocked();
         }
         else if(data is StaticCubeData staticCubeData)
         {
@@ -54,7 +58,11 @@ public class PuzzleManager : Singleton<PuzzleManager>
         cube.transform.SetParent(CurrentLevel.transform, true);
         if(!CurrentLevel.TryToAddCube(cube))
         {
-            Destroy(cube.gameObject);
+#if UNITY_EDITOR
+            DestroyImmediate(cube.gameObject);
+#else 
+            Destroy(cube.gameObject)
+#endif
             return null;
         }
         else

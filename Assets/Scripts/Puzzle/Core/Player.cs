@@ -5,8 +5,7 @@ using UnityEngine;
 public class Player
 {
     private Level level;
-    private Cube dragStartCube;
-    private ColorCube selectedCube;
+    private ColorCube dragStartCube;
 
     public Player(){}
 
@@ -30,7 +29,7 @@ public class Player
             var cube = GetCubeAtMousePosition();
             if (cube != null && cube is ColorCube colorCube && colorCube.movable)
             {
-                RegisterDragStart(cube);
+                RegisterDragStart(colorCube);
             }
         }
 
@@ -56,28 +55,26 @@ public class Player
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(IsCubeSelected())
+            if(level.IsCubeSelected())
             {
                 var cube = GetCubeAtMousePosition();
                 if (cube != null)
                 {
-                    if(cube == selectedCube)
+                    if(level.SelectedCube.movable)
                     {
-                        DeselectCube(selectedCube);
-                    }
-                    else if(selectedCube.movable)
-                    {
-                        var direction = CalcuDirection(selectedCube, cube);
-                        level.TryToStartMovingCube(selectedCube, direction);
+                        // move cube
+                        var direction = CalcuDirection(level.SelectedCube, cube);
+                        level.TryToStartMovingCube(level.SelectedCube, direction);
                     }
                 }
             }
             else
             {
+                // select cube
                 var cube = GetCubeAtMousePosition();
                 if (cube != null && cube is ColorCube colorCube && colorCube.movable)
                 {
-                    SelectCube(colorCube);
+                    level.SelectCube(colorCube);
                 }
             }
             
@@ -95,31 +92,14 @@ public class Player
         return null;
     }
 
-    private void RegisterDragStart(Cube cube)
+    private void RegisterDragStart(ColorCube colorCube)
     {
-        dragStartCube = cube;
-    }
-
-    private void SelectCube(ColorCube colorCube)
-    {
-        colorCube.OnSelected();
-        selectedCube = colorCube;
-    }
-
-    private void DeselectCube(ColorCube colorCube)
-    {
-        colorCube.OnDeselected();
-        selectedCube = null;
+        dragStartCube = colorCube;
     }
 
     private bool IsDragRegistered()
     {
         return dragStartCube != null;
-    }
-
-    private bool IsCubeSelected()
-    {
-        return selectedCube != null;
     }
 
     private MoveDirection CalcuDirection(Cube start, Cube end)

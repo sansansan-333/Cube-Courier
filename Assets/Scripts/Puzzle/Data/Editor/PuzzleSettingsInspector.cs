@@ -15,6 +15,7 @@ public class PuzzleSettingsInspector : Editor
         property.Add(nameof(PuzzleSettings.colorCubeMaterials), serializedObject.FindProperty(nameof(PuzzleSettings.colorCubeMaterials)));
         property.Add(nameof(PuzzleSettings.cubeMovingSpeedCurve), serializedObject.FindProperty(nameof(PuzzleSettings.cubeMovingSpeedCurve)));
         property.Add(nameof(PuzzleSettings.cubeFallingSpeedCurve), serializedObject.FindProperty(nameof(PuzzleSettings.cubeFallingSpeedCurve)));
+        property.Add(nameof(PuzzleSettings.lockedCubeTexture), serializedObject.FindProperty(nameof(PuzzleSettings.lockedCubeTexture)));
     }
 
     public override void OnInspectorGUI()
@@ -26,6 +27,8 @@ public class PuzzleSettingsInspector : Editor
             // cube colors
             var materials = property[nameof(PuzzleSettings.colorCubeMaterials)];
             var cubeColors = Enum.GetValues(typeof(CubeColor)).OfType<CubeColor>().ToList();
+
+            while(materials.arraySize < cubeColors.Count) materials.arraySize++;
 
             for (int i = 0; i < cubeColors.Count; i++)
             {
@@ -43,6 +46,11 @@ public class PuzzleSettingsInspector : Editor
 
             movingCurve.animationCurveValue = EditorGUILayout.CurveField("Moving Speed", movingCurve.animationCurveValue);
             fallingCurve.animationCurveValue = EditorGUILayout.CurveField("Falling Speed", fallingCurve.animationCurveValue);
+
+            // locked cube texture
+            var lockedTexture = property[nameof(PuzzleSettings.lockedCubeTexture)];
+
+            lockedTexture.objectReferenceValue = EditorGUILayout.ObjectField("Locked Cube Texture", lockedTexture.objectReferenceValue, typeof(Texture2D), false);
         }
         serializedObject.ApplyModifiedProperties();
     }

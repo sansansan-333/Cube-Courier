@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Move 
 {
-    public Cube cube;
-    public Vector3Int originalPosition;
+    public ColorCube colorCube;
+    public Vector3Int startPosition;
     public MoveDirection direction;
     public Vector3Int endPosition;
 
-    public Move(Cube cube, Vector3Int originalPosition, MoveDirection direction, Vector3Int endPosition)
+    public Move(ColorCube colorCube, Vector3Int startPosition, MoveDirection direction, Vector3Int endPosition)
     {
-        this.cube = cube;
-        this.originalPosition = originalPosition;
+        this.colorCube = colorCube;
+        this.startPosition = startPosition;
         this.direction = direction;
         this.endPosition = endPosition;
     }

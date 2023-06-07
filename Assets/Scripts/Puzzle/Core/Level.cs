@@ -8,6 +8,7 @@ public class Level : MonoBehaviour
     private Dictionary<Vector3Int, Cube> cubeDict = new Dictionary<Vector3Int, Cube>();
     public PuzzleState state;
     private Stack<Move> moves = new Stack<Move>();
+    public ColorCube SelectedCube { get; private set; }
     private LevelScreen levelScreen;
 
     private readonly float cubeMovingSpeed = 4f; // [m/s]
@@ -97,7 +98,7 @@ public class Level : MonoBehaviour
     /// Start to move a cube to the direction if possible. Cube will fall if it can.
     /// </summary>
     /// <returns>True if the cube can move in the direction. False otherwise.</returns>
-    public bool TryToStartMovingCube(Cube cube, MoveDirection direction)
+    public bool TryToStartMovingCube(ColorCube cube, MoveDirection direction)
     {
         if(cube == null || !cubes.Contains(cube)) return false;
 
@@ -118,19 +119,22 @@ public class Level : MonoBehaviour
             ));
 
             // fall 
-            var floorCube = GetCubeBelow(positionAfterHorizontalMove + Vector3Int.down);
-            if(floorCube != null)
+            if(cubeDict[positionAfterHorizontalMove + Vector3Int.down] == null)
             {
-                Debug.Log("fall");
-                finalPosition = floorCube.position + Vector3Int.up;
+                var floorCube = GetCubeBelow(positionAfterHorizontalMove + Vector3Int.down);
+                if (floorCube != null)
+                {
+                    Debug.Log("fall");
+                    finalPosition = floorCube.position + Vector3Int.up;
 
-                motionQueue.PushMotion(new MotionInfo(
-                    cube.transform,
-                    positionAfterHorizontalMove,
-                    finalPosition,
-                    ResourceSystem.Instance.PuzzleSettings.cubeFallingSpeedCurve,
-                    cubeMovingSpeed
-                ));
+                    motionQueue.PushMotion(new MotionInfo(
+                        cube.transform,
+                        positionAfterHorizontalMove,
+                        finalPosition,
+                        ResourceSystem.Instance.PuzzleSettings.cubeFallingSpeedCurve,
+                        cubeMovingSpeed
+                    ));
+                }
             }
 
             // invoke move
@@ -169,6 +173,26 @@ public class Level : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void SelectCube(ColorCube colorCube)
+    {
+        colorCube.OnSelected();
+        SelectedCube = colorCube;
+    }
+
+    public void DeselectCube()
+    {
+        if(IsCubeSelected())
+        {
+            SelectedCube.OnDeselected();
+            SelectedCube = null;
+        }
+    }
+
+    public bool IsCubeSelected()
+    {
+        return SelectedCube != null;
     }
 
     private bool CanGoTo(Cube cube, MoveDirection direction)
@@ -272,11 +296,35 @@ public class Level : MonoBehaviour
     private void LockCube(ColorCube colorCube)
     {
         colorCube.movable = false;
+        DeselectCube();
+        colorCube.OnLocked();
+    }
+
+    private void UnlockCube(ColorCube colorCube)
+    {
+        colorCube.movable = true;
+        colorCube.OnUnlocked();
     }
 
     private void DoInverseMoveOf(Move move)
     {
-        
+        // unlock itself and adjacent cubes 
+        if(!move.colorCube.movable) UnlockCube(move.colorCube);
+        foreach(var adjCube in GetAdjacentCubes(move.colorCube))
+        {
+            if(adjCube is ColorCube adjColorCube && 
+                adjColorCube.color == move.colorCube.color && 
+                !adjColorCube.movable)
+            {
+                UnlockCube(adjColorCube);
+            }
+        }
+
+        // revert cube position
+        move.colorCube.position = move.startPosition;
+        move.colorCube.transform.position = move.startPosition;
+        cubeDict[move.endPosition] = null;
+        cubeDict[move.startPosition] = move.colorCube;
     }
 }
 

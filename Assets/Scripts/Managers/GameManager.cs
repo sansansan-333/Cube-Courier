@@ -6,7 +6,7 @@ using UnityEngine;
 // controls game flow
 public class GameManager : Singleton<GameManager>
 {
-    private Player player;
+    public Player Player { get; private set; }
     private CameraPivotControl cameraPivotControl;
 
     void Start()
@@ -18,7 +18,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        if(player != null) player.ManagedUpdate();
+        if(Player != null) Player.ManagedUpdate();
     }
 
     public void LoadLevel(int levelNumber)
@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
         {
             PuzzleManager.Instance.SpawnLevel(ResourceSystem.Instance.Levels[levelNumber - 1]);
             if(cameraPivotControl != null) cameraPivotControl.CenterCamera();
-            player = new Player();
+            Player = new Player();
         }
     }
 
