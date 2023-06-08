@@ -19,12 +19,12 @@ MonoBehaviour:
   - position: {x: 1, y: 1, z: 0}
     movable: 1
     color: 1
-  - position: {x: 1, y: 1, z: -3}
-    movable: 1
-    color: 1
   - position: {x: -1, y: 1, z: -3}
     movable: 1
     color: 0
+  - position: {x: 1, y: 1, z: -3}
+    movable: 0
+    color: 1
   staticCubes:
   - position: {x: 0, y: 0, z: 0}
     materialName: cube_default

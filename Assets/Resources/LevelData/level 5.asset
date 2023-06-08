@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: level 5
   m_EditorClassIdentifier: 
   colorCubes: []
-  staticCubes: []
+  staticCubes:
+  - position: {x: 0, y: 0, z: 0}
+    materialName: 
