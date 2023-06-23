@@ -15,6 +15,7 @@ public class PuzzleSettingsInspector : Editor
         property.Add(nameof(PuzzleSettings.colorCubeMaterials), serializedObject.FindProperty(nameof(PuzzleSettings.colorCubeMaterials)));
         property.Add(nameof(PuzzleSettings.cubeMovingSpeedCurve), serializedObject.FindProperty(nameof(PuzzleSettings.cubeMovingSpeedCurve)));
         property.Add(nameof(PuzzleSettings.cubeFallingSpeedCurve), serializedObject.FindProperty(nameof(PuzzleSettings.cubeFallingSpeedCurve)));
+        property.Add(nameof(PuzzleSettings.defaultCubeTexture), serializedObject.FindProperty(nameof(PuzzleSettings.defaultCubeTexture)));
         property.Add(nameof(PuzzleSettings.lockedCubeTexture), serializedObject.FindProperty(nameof(PuzzleSettings.lockedCubeTexture)));
     }
 
@@ -47,9 +48,12 @@ public class PuzzleSettingsInspector : Editor
             movingCurve.animationCurveValue = EditorGUILayout.CurveField("Moving Speed", movingCurve.animationCurveValue);
             fallingCurve.animationCurveValue = EditorGUILayout.CurveField("Falling Speed", fallingCurve.animationCurveValue);
 
+            // default cube texture
+            var defaultTexture = property[nameof(PuzzleSettings.defaultCubeTexture)];
+            defaultTexture.objectReferenceValue = EditorGUILayout.ObjectField("Default Cube Texture", defaultTexture.objectReferenceValue, typeof(Texture2D), false);
+
             // locked cube texture
             var lockedTexture = property[nameof(PuzzleSettings.lockedCubeTexture)];
-
             lockedTexture.objectReferenceValue = EditorGUILayout.ObjectField("Locked Cube Texture", lockedTexture.objectReferenceValue, typeof(Texture2D), false);
         }
         serializedObject.ApplyModifiedProperties();

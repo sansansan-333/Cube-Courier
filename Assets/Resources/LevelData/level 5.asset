@@ -12,7 +12,305 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ce137d37be741b2a34a992a36a330a, type: 3}
   m_Name: level 5
   m_EditorClassIdentifier: 
-  colorCubes: []
+  colorCubes:
+  - position: {x: 2, y: 0, z: -3}
+    movable: 1
+    color: 0
+  - position: {x: 3, y: 0, z: -4}
+    movable: 1
+    color: 2
+  - position: {x: 3, y: 0, z: -1}
+    movable: 1
+    color: 3
+  - position: {x: 5, y: 0, z: -3}
+    movable: 1
+    color: 3
+  - position: {x: 2, y: 3, z: 2}
+    movable: 1
+    color: 3
+  - position: {x: 4, y: 3, z: 2}
+    movable: 1
+    color: 3
+  - position: {x: 3, y: 3, z: 3}
+    movable: 1
+    color: 2
+  - position: {x: 3, y: 3, z: 2}
+    movable: 1
+    color: 0
   staticCubes:
   - position: {x: 0, y: 0, z: 0}
-    materialName: 
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -4}
+    materialName: cube_default
+  - position: {x: 0, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 3, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 4, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 5, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 6, y: 0, z: -5}
+    materialName: cube_default
+  - position: {x: 6, y: 0, z: -4}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -4}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: -4}
+    materialName: cube_default
+  - position: {x: 4, y: 0, z: -4}
+    materialName: cube_default
+  - position: {x: 5, y: 0, z: -4}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: 3, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: 4, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: 6, y: 0, z: -3}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 3, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 4, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 5, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 6, y: 0, z: -2}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 4, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 5, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 6, y: 0, z: -1}
+    materialName: cube_default
+  - position: {x: 1, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 3, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 4, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 5, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 6, y: 0, z: 0}
+    materialName: cube_default
+  - position: {x: 0, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 0, y: 1, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 1, z: -2}
+    materialName: cube_default
+  - position: {x: 0, y: 1, z: -3}
+    materialName: cube_default
+  - position: {x: 0, y: 1, z: -4}
+    materialName: cube_default
+  - position: {x: 0, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 1, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 2, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 3, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 4, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 5, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 6, y: 1, z: -5}
+    materialName: cube_default
+  - position: {x: 6, y: 1, z: -4}
+    materialName: cube_default
+  - position: {x: 6, y: 1, z: -3}
+    materialName: cube_default
+  - position: {x: 6, y: 1, z: -2}
+    materialName: cube_default
+  - position: {x: 6, y: 1, z: -1}
+    materialName: cube_default
+  - position: {x: 6, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 5, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 4, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 3, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 1, y: 1, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 1, z: -1}
+    materialName: cube_default
+  - position: {x: 2, y: 1, z: -2}
+    materialName: cube_default
+  - position: {x: 1, y: 1, z: -4}
+    materialName: cube_default
+  - position: {x: 2, y: 1, z: -4}
+    materialName: cube_default
+  - position: {x: 4, y: 1, z: -2}
+    materialName: cube_default
+  - position: {x: 4, y: 1, z: -3}
+    materialName: cube_default
+  - position: {x: 4, y: 1, z: -4}
+    materialName: cube_default
+  - position: {x: 5, y: 1, z: -4}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: -2}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: -3}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: -4}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 1, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: -4}
+    materialName: cube_default
+  - position: {x: 1, y: 2, z: -4}
+    materialName: cube_default
+  - position: {x: 3, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: -4}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: -3}
+    materialName: cube_default
+  - position: {x: 5, y: 2, z: -4}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: -4}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: -3}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: -2}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: -1}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 5, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 3, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 1, y: 2, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 0, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 1, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 3, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 5, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: 1}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 5, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 3, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 1, y: 2, z: 2}
+    materialName: cube_default
+  - position: {x: 1, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 2, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 3, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 5, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: 3}
+    materialName: cube_default
+  - position: {x: 0, y: 3, z: 0}
+    materialName: cube_default
+  - position: {x: 0, y: 3, z: 1}
+    materialName: cube_default
+  - position: {x: 0, y: 3, z: 2}
+    materialName: cube_default
+  - position: {x: 6, y: 3, z: 0}
+    materialName: cube_default
+  - position: {x: 6, y: 3, z: 1}
+    materialName: cube_default
+  - position: {x: 6, y: 3, z: 2}
+    materialName: cube_default
+  - position: {x: 5, y: 3, z: 0}
+    materialName: cube_default
+  - position: {x: 4, y: 3, z: 0}
+    materialName: cube_default
+  - position: {x: 3, y: 3, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 3, z: 0}
+    materialName: cube_default
+  - position: {x: 2, y: 3, z: -1}
+    materialName: cube_default
+  - position: {x: 0, y: 3, z: 3}
+    materialName: cube_default
+  - position: {x: 0, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 1, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 2, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 3, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 4, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 5, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 6, y: 3, z: 4}
+    materialName: cube_default
+  - position: {x: 6, y: 3, z: 3}
+    materialName: cube_default
+  - position: {x: 4, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 5, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 6, y: 2, z: -5}
+    materialName: cube_default
+  - position: {x: 0, y: 3, z: -1}
+    materialName: cube_default

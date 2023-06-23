@@ -48,16 +48,15 @@ public class ColorCube : Cube
 
     public void OnLocked()
     {
-        var lockedTexture = ResourceSystem.Instance.PuzzleSettings.lockedCubeTexture;
         var tempMaterial = new Material(GetComponent<MeshRenderer>().sharedMaterial);
-        tempMaterial.mainTexture = lockedTexture;
+        tempMaterial.mainTexture = ResourceSystem.Instance.PuzzleSettings.lockedCubeTexture;
         GetComponent<MeshRenderer>().material = tempMaterial;
     }
 
     public void OnUnlocked()
     {
         var tempMaterial = new Material(GetComponent<MeshRenderer>().sharedMaterial);
-        tempMaterial.mainTexture = null;
+        tempMaterial.mainTexture = ResourceSystem.Instance.PuzzleSettings.defaultCubeTexture;
         GetComponent<MeshRenderer>().material = tempMaterial;
     }
 }

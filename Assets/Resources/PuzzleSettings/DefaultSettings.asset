@@ -74,4 +74,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  defaultCubeTexture: {fileID: 2800000, guid: ae7a4d92bbde14c3b944827008ea3f57, type: 3}
   lockedCubeTexture: {fileID: 2800000, guid: 1c2d91f9beea64afda691229d2f2e76a, type: 3}

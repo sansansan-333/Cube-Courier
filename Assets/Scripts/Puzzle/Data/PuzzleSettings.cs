@@ -9,6 +9,7 @@ public class PuzzleSettings : ScriptableObject
     public List<Material> colorCubeMaterials;
     public AnimationCurve cubeMovingSpeedCurve;
     public AnimationCurve cubeFallingSpeedCurve;
+    public Texture2D defaultCubeTexture;
     public Texture2D lockedCubeTexture;
 
     public void Awake()

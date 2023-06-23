@@ -7,7 +7,7 @@ public class Level : MonoBehaviour
     private List<Cube> cubes = new List<Cube>();
     private Dictionary<Vector3Int, Cube> cubeDict = new Dictionary<Vector3Int, Cube>();
     public PuzzleState state;
-    private Stack<Move> moves = new Stack<Move>();
+    private Stack<List<CubeMove>> moveHistory = new Stack<List<CubeMove>>();
     public ColorCube SelectedCube { get; private set; }
     private LevelScreen levelScreen;
 
@@ -102,11 +102,12 @@ public class Level : MonoBehaviour
     {
         if(cube == null || !cubes.Contains(cube)) return false;
 
-        if(CanGoTo(cube, direction))
+        if(CanGoTo(cube, direction) && CanMove(cube))
         {
             var originalPosition = cube.position;
             var positionAfterHorizontalMove = cube.position + direction;
             var finalPosition = positionAfterHorizontalMove;
+            var cubeMoves = new List<CubeMove>();
 
             // move horizontally
             var motionQueue = new MotionSystem.MotionQueue();
@@ -119,7 +120,7 @@ public class Level : MonoBehaviour
             ));
 
             // fall 
-            if(cubeDict[positionAfterHorizontalMove + Vector3Int.down] == null)
+            if(!IsPositionOccupied(positionAfterHorizontalMove + Vector3Int.down))
             {
                 var floorCube = GetCubeBelow(positionAfterHorizontalMove + Vector3Int.down);
                 if (floorCube != null)
@@ -142,14 +143,36 @@ public class Level : MonoBehaviour
             motionQueue.Run(onEnd: () => {
                 FinalizeCubeMove(cube, finalPosition);
 
-                // record move 
-                moves.Push(new Move(
-                    cube,
-                    originalPosition,
-                    direction,
-                    finalPosition
-                ));
+                // record move
+                cubeMoves.Add(new CubeMove(cube, originalPosition, finalPosition));
             });
+
+            moveHistory.Push(cubeMoves);
+
+            /*
+
+            // gather all cubes to move
+            var cubesToMove = new List<ColorCube>();
+            var position = cube.position;
+            while(true)
+            {
+                position += Vector3Int.up;
+                if(IsPositionOccupied(position))
+                {
+                    var cubeAbove = cubeDict[position];
+                    if(cubeAbove is ColorCube colorCubeAbove && colorCubeAbove.movable && CanGoTo(colorCubeAbove, direction))
+                    {
+                        cubesToMove.Add(colorCubeAbove);
+                    }
+                    else break;
+                }
+                else break;
+            }
+
+            // start moving
+            StartMovingCubes(cubesToMove, direction);
+            */
+
             return true;
         }
         else
@@ -158,9 +181,21 @@ public class Level : MonoBehaviour
         }
     }
 
+    private void StartMovingCubes(List<ColorCube> cubes, MoveDirection direction)
+    {
+        
+    }
+
     public void UndoMove()
     {
-        if(moves.Count > 0) DoInverseMoveOf(moves.Pop());
+        if(moveHistory.Count > 0) 
+        {
+            var moves = moveHistory.Pop();
+            foreach(var move in moves)
+            {
+                DoInverseMoveOf(move);
+            }
+        }
     }
 
     public bool IsLevelCompleted()
@@ -205,6 +240,20 @@ public class Level : MonoBehaviour
         return true;
     }
 
+    private bool CanMove(ColorCube colorCube)
+    {
+        var cubeAbove = GetCubeAt(colorCube.position + Vector3Int.up);
+        if(cubeAbove != null)
+        {
+            if(cubeAbove is ColorCube colorCubeAbove && !colorCubeAbove.movable)
+            {
+                return true;
+            }
+            else return false;
+        }
+        else return true;
+    }
+
     private void FinalizeCubeMove(Cube cube, Vector3Int finalPosition)
     {
         // change state
@@ -236,6 +285,16 @@ public class Level : MonoBehaviour
         }
 
         Debug.Log("move finalized");
+    }
+
+    private Cube GetCubeAt(Vector3Int position)
+    {
+        if(cubeDict.ContainsKey(position))
+        {
+            return cubeDict[position];
+        }
+
+        return null;
     }
 
     private bool IsPositionOccupied(Vector3Int position)
@@ -306,7 +365,7 @@ public class Level : MonoBehaviour
         colorCube.OnUnlocked();
     }
 
-    private void DoInverseMoveOf(Move move)
+    private void DoInverseMoveOf(CubeMove move)
     {
         // unlock itself and adjacent cubes 
         if(!move.colorCube.movable) UnlockCube(move.colorCube);
