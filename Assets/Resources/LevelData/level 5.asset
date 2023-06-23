@@ -38,32 +38,6 @@ MonoBehaviour:
     movable: 1
     color: 0
   staticCubes:
-  - position: {x: 0, y: 0, z: 0}
-    materialName: cube_default
-  - position: {x: 0, y: 0, z: -1}
-    materialName: cube_default
-  - position: {x: 0, y: 0, z: -2}
-    materialName: cube_default
-  - position: {x: 0, y: 0, z: -3}
-    materialName: cube_default
-  - position: {x: 0, y: 0, z: -4}
-    materialName: cube_default
-  - position: {x: 0, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 1, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 2, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 3, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 4, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 5, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 6, y: 0, z: -5}
-    materialName: cube_default
-  - position: {x: 6, y: 0, z: -4}
-    materialName: cube_default
   - position: {x: 1, y: 0, z: -4}
     materialName: cube_default
   - position: {x: 2, y: 0, z: -4}
@@ -78,8 +52,6 @@ MonoBehaviour:
     materialName: cube_default
   - position: {x: 4, y: 0, z: -3}
     materialName: cube_default
-  - position: {x: 6, y: 0, z: -3}
-    materialName: cube_default
   - position: {x: 1, y: 0, z: -2}
     materialName: cube_default
   - position: {x: 2, y: 0, z: -2}
@@ -90,8 +62,6 @@ MonoBehaviour:
     materialName: cube_default
   - position: {x: 5, y: 0, z: -2}
     materialName: cube_default
-  - position: {x: 6, y: 0, z: -2}
-    materialName: cube_default
   - position: {x: 1, y: 0, z: -1}
     materialName: cube_default
   - position: {x: 2, y: 0, z: -1}
@@ -99,8 +69,6 @@ MonoBehaviour:
   - position: {x: 4, y: 0, z: -1}
     materialName: cube_default
   - position: {x: 5, y: 0, z: -1}
-    materialName: cube_default
-  - position: {x: 6, y: 0, z: -1}
     materialName: cube_default
   - position: {x: 1, y: 0, z: 0}
     materialName: cube_default
@@ -111,42 +79,6 @@ MonoBehaviour:
   - position: {x: 4, y: 0, z: 0}
     materialName: cube_default
   - position: {x: 5, y: 0, z: 0}
-    materialName: cube_default
-  - position: {x: 6, y: 0, z: 0}
-    materialName: cube_default
-  - position: {x: 0, y: 1, z: 0}
-    materialName: cube_default
-  - position: {x: 0, y: 1, z: -1}
-    materialName: cube_default
-  - position: {x: 0, y: 1, z: -2}
-    materialName: cube_default
-  - position: {x: 0, y: 1, z: -3}
-    materialName: cube_default
-  - position: {x: 0, y: 1, z: -4}
-    materialName: cube_default
-  - position: {x: 0, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 1, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 2, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 3, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 4, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 5, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 6, y: 1, z: -5}
-    materialName: cube_default
-  - position: {x: 6, y: 1, z: -4}
-    materialName: cube_default
-  - position: {x: 6, y: 1, z: -3}
-    materialName: cube_default
-  - position: {x: 6, y: 1, z: -2}
-    materialName: cube_default
-  - position: {x: 6, y: 1, z: -1}
-    materialName: cube_default
-  - position: {x: 6, y: 1, z: 0}
     materialName: cube_default
   - position: {x: 5, y: 1, z: 0}
     materialName: cube_default
@@ -174,44 +106,6 @@ MonoBehaviour:
     materialName: cube_default
   - position: {x: 5, y: 1, z: -4}
     materialName: cube_default
-  - position: {x: 0, y: 2, z: 0}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: -1}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: -2}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: -3}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: -4}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 1, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 2, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 2, y: 2, z: -4}
-    materialName: cube_default
-  - position: {x: 1, y: 2, z: -4}
-    materialName: cube_default
-  - position: {x: 3, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 4, y: 2, z: -4}
-    materialName: cube_default
-  - position: {x: 4, y: 2, z: -3}
-    materialName: cube_default
-  - position: {x: 5, y: 2, z: -4}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: -4}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: -3}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: -2}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: -1}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: 0}
-    materialName: cube_default
   - position: {x: 5, y: 2, z: 0}
     materialName: cube_default
   - position: {x: 4, y: 2, z: 0}
@@ -224,12 +118,6 @@ MonoBehaviour:
     materialName: cube_default
   - position: {x: 2, y: 2, z: -1}
     materialName: cube_default
-  - position: {x: 0, y: 2, z: 1}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: 2}
-    materialName: cube_default
-  - position: {x: 0, y: 2, z: 3}
-    materialName: cube_default
   - position: {x: 1, y: 2, z: 1}
     materialName: cube_default
   - position: {x: 2, y: 2, z: 1}
@@ -239,10 +127,6 @@ MonoBehaviour:
   - position: {x: 4, y: 2, z: 1}
     materialName: cube_default
   - position: {x: 5, y: 2, z: 1}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: 1}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: 2}
     materialName: cube_default
   - position: {x: 5, y: 2, z: 2}
     materialName: cube_default
@@ -264,20 +148,6 @@ MonoBehaviour:
     materialName: cube_default
   - position: {x: 5, y: 2, z: 3}
     materialName: cube_default
-  - position: {x: 6, y: 2, z: 3}
-    materialName: cube_default
-  - position: {x: 0, y: 3, z: 0}
-    materialName: cube_default
-  - position: {x: 0, y: 3, z: 1}
-    materialName: cube_default
-  - position: {x: 0, y: 3, z: 2}
-    materialName: cube_default
-  - position: {x: 6, y: 3, z: 0}
-    materialName: cube_default
-  - position: {x: 6, y: 3, z: 1}
-    materialName: cube_default
-  - position: {x: 6, y: 3, z: 2}
-    materialName: cube_default
   - position: {x: 5, y: 3, z: 0}
     materialName: cube_default
   - position: {x: 4, y: 3, z: 0}
@@ -287,30 +157,4 @@ MonoBehaviour:
   - position: {x: 2, y: 3, z: 0}
     materialName: cube_default
   - position: {x: 2, y: 3, z: -1}
-    materialName: cube_default
-  - position: {x: 0, y: 3, z: 3}
-    materialName: cube_default
-  - position: {x: 0, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 1, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 2, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 3, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 4, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 5, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 6, y: 3, z: 4}
-    materialName: cube_default
-  - position: {x: 6, y: 3, z: 3}
-    materialName: cube_default
-  - position: {x: 4, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 5, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 6, y: 2, z: -5}
-    materialName: cube_default
-  - position: {x: 0, y: 3, z: -1}
     materialName: cube_default
